@@ -1,11 +1,11 @@
 from django.db import models
 
 class DetectionRequest(models.Model):
-    created_time = models.DateField()
-    original_picture = models.ImageField(upload_to="images/originals/")
+    created_time = models.DateTimeField()
+    original_image = models.ImageField(upload_to="images/originals/")
 
     def __str__(self):
-        return f"{{self.created_time}}"
+        return f"{self.created_time}"
 
     class Meta:
         db_table = 'DetectionRequest'
@@ -13,18 +13,18 @@ class DetectionRequest(models.Model):
         verbose_name_plural = 'DetectionRequests'
 
 class DetectionResult(models.Model):
-    created_time = models.DateField()
+    created_time = models.DateTimeField()
     duration = models.IntegerField()
     object_count = models.IntegerField()
     tag_count = models.IntegerField()
-    picture_width = models.IntegerField()
-    picture_height = models.IntegerField()
-    tagged_picture = models.ImageField(upload_to="images/tagged/")
-    human_readable = models.CharField()
+    image_width = models.IntegerField()
+    image_height = models.IntegerField()
+    tagged_image = models.ImageField(upload_to="images/tagged/")
+    human_readable = models.CharField(max_length=500)
     detection_request = models.OneToOneField(DetectionRequest, on_delete=models.CASCADE, primary_key=True,)
 
     def __str__(self):
-        return f"{{self.created_time}} ({{self.object_count}} objects, {{self.duration / 100}} seconds)"
+        return f"{self.created_time} ({self.object_count} objects, {self.duration / 100} seconds)"
 
     class Meta:
         db_table = 'DetectionResponse'
@@ -37,7 +37,7 @@ class DetectableObject(models.Model):
     plural = models.CharField(max_length=50)
 
     def __str__(self):
-        return f"{{self.tag}} ({{self.singular}}"
+        return f"{self.tag} ({self.singular}"
 
     class Meta:
         db_table = 'DetectableObject'
@@ -60,7 +60,7 @@ class DetectedObject(models.Model):
     detection = models.ForeignKey(DetectionResult, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{{self.tag}} ({{self.detected_time}})"
+        return f"{self.tag} ({self.detected_time})"
 
     class Meta:
         db_table = 'DetectedObject'

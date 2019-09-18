@@ -1,0 +1,28 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<div class="ui text container">
+    <div class="ui items">
+        {% for detection in detections %}
+        <div class="item">
+            <div class="image">
+                <img src="{{detection.original_image.url}}">
+            </div>
+            <div class="content">
+                <a class="header">{{detection.created_time}}</a>
+            <div class="meta">
+                <span>7 objects detected</span>
+            </div>
+            <div class="description">
+                <p>2 cars, 3 coffee cups and 2 bikes</p>
+            </div>
+            <div class="extra">
+                3.45 seconds
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

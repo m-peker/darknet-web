@@ -1,4 +1,4 @@
-from .models import DetectionRequest, DetectionResult
+from detections.models import DetectionRequest, DetectionResult
 from rest_framework import serializers
 
 class DetectionRequestSerializer(serializers.ModelSerializer):
