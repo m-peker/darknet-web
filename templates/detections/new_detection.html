@@ -13,36 +13,30 @@
 {% block script %}
 
 <script>
+    $( "#detect-form" ).submit(function( event ) {
+        event.preventDefault();
 
-var csrftoken = '{{ csrf_token }}';
+        var form = $(this);
+        var data = new FormData(form[0]);
+        var url = form.attr( "action" );
 
-// var csrftoken = getCookie('csrftoken');
-        
-        $( "#detect-form" ).submit(function( event ) {
-            event.preventDefault();
-
-            var form = $(this);
-            var data = new FormData(form[0]);
-            var url = form.attr( "action" );
-
-            $.ajax({
-                url: url,
-                type: 'post',
-                data: data,
-                cache: false,
-                contentType: false,
-                processData: false,
-                headers: {
-                    'X-CSRFToken': csrftoken
-                },
-                success: function (data, status) {
-                    console.info(data);
-                    console.info(status);
-                }
-            });
-        
+        $.ajax({
+            url: url,
+            type: 'post',
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            success: function (data, status) {
+                console.info(data);
+                console.info(status);
+            }
         });
-        
-        </script>
+
+    });
+</script>
   
 {% endblock script %}
