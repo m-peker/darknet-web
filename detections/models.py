@@ -8,9 +8,9 @@ class DetectionRequest(models.Model):
         return f"{{self.created_time}}"
 
     class Meta:
-        db_table = 'DetectionResult'
-        verbose_name = 'DetectionResult'
-        verbose_name_plural = 'DetectionResults'
+        db_table = 'DetectionRequest'
+        verbose_name = 'DetectionRequest'
+        verbose_name_plural = 'DetectionRequests'
 
 class DetectionResult(models.Model):
     created_time = models.DateField()
@@ -27,9 +27,9 @@ class DetectionResult(models.Model):
         return f"{{self.created_time}} ({{self.object_count}} objects, {{self.duration / 100}} seconds)"
 
     class Meta:
-        db_table = 'DetectionResult'
-        verbose_name = 'DetectionResult'
-        verbose_name_plural = 'DetectionResults'
+        db_table = 'DetectionResponse'
+        verbose_name = 'DetectionResponse'
+        verbose_name_plural = 'DetectionResponses'
 
 class DetectableObject(models.Model):
     tag = models.CharField(max_length=50, primary_key=True)
@@ -40,9 +40,9 @@ class DetectableObject(models.Model):
         return f"{{self.tag}} ({{self.singular}}"
 
     class Meta:
-        db_table = 'Object'
-        verbose_name = 'Object'
-        verbose_name_plural = 'Objects'
+        db_table = 'DetectableObject'
+        verbose_name = 'DetectableObject'
+        verbose_name_plural = 'DetectableObjects'
         
 class DetectedObject(models.Model):
     POSITION_CHOICES = [
