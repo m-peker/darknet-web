@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 from os.path import dirname, abspath, join
+from .yolopy.pydarknet import Detector, Image
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = dirname(dirname(abspath(__file__)))
@@ -26,7 +27,6 @@ SECRET_KEY = 'el4ej7&h$et0rzw@*-x6$3*yi(q)i#i^x^%9pvm%tkn&@3wc4h'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 

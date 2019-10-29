@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
-import os
-import sys
-
+import os, sys
+from yolopy.yolo import YoloNetwork
 
 def main():
+    # Start the network singleton to save time
+    YoloNetwork.get_instance()
+
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'darknetweb.settings')
     try:
         from django.core.management import execute_from_command_line
